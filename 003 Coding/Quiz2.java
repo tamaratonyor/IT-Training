@@ -8,15 +8,17 @@ public class Word_Counter
 	{
 		Scanner input = new Scanner(System.in);
 		System.out.print("Please enter your word");
-		String s = in.nextLine();
-		ArrayList<String> reverse = new ArrayList<String>();
+		String s = input.nextLine();
+		char[] reverse = new char[s.length()];
 		
-		for (int i = s.length; i >= 0; i--)
+		for (int i = s.length()-1; i >= 0; i--)
 		{
-			reverse.add(s.charAt(i));
+		    int j = 0;
+			reverse[i] = s.charAt(j);
+			j++;
 		}
-		for (int i = 0; i < reverse.size(); i++) 
-		System.out.print(+reverse(i));
+		for (int i = 0; i < reverse.length; i++) 
+		System.out.print(+reverse[i]);
 		
 	}
 
