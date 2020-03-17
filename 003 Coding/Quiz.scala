@@ -1,50 +1,60 @@
-
-object Counter {
-  def main(args: Array[String]): Unit =
-  {
-    var numList: List[Int] = List()
-    for (x <- 0 until 30)
-    {
-      val numList[x] = scala.util.Random.nextInt()
+import scala.collection.mutable.ListBuffer
+object Quiz {
+  def main(args: Array[String]): Unit = {
+    var numList: ListBuffer[Int] = ListBuffer()
+    for (x <- 0 until 30) {
+      numList += scala.util.Random.nextInt()
     }
 
-     def nameAndID(name: String, ID: String): String =
-    {
-	      return name+ID
+    def nameAndID(name: String, ID: String): String = {
+      return name + ID
     }
-    nameAndID("Carl","123")
-    
-    def removeDuplicates(objectList: List[String]):List[String] = {
-       for (x <- 0 until objectList.length)
-       {
-         for (j<- 1 until objectList.length)
-         {
-            if (objectList[j] == objectList[x])
-           {
-             objectList[j] = ""
-           }
-         } 
-       }
-     }
-  
-     def smallestMissingInteger(numList: List[Int]):Int = {
-       for (x <- 0 until numList.length)
-       {
-          if (numList[x] < 0)
-	  {
-		while (numList[x] < 0)
-		{
-		  numList[x]+=1
-		}
-            if (!numList.contains(numList[x]))
-	    {
-	      return numList[x]
+
+    nameAndID("Carl", "123")
+
+    def removeDuplicates(objectList: ListBuffer[String]) =
+    {
+      var varList : ListBuffer[String] = ListBuffer()
+      for (x <- 0 until objectList.length)
+      {
+        for (j<- 1 until objectList.length)
+          {
+            if (objectList(j) == objectList(x))
+            {
+              objectList.patch(j, objectList, 1)
             }
-	  }
-       }
-     }
+          }
+      }
+      print(objectList)
+    }
+
+    var testList: ListBuffer[String] = ListBuffer("sun","mon","sun")
+    removeDuplicates(testList)
+
+
+    def smallestMissingInteger(numList: List[Int]) =
+    {
+      if (numList.min < 0)
+      {
+        var min: Int = numList.min
+        while (min < 0)
+        {
+          min = min + 1
+        }
+        while (numList.contains(min))
+        {
+          min = min + 1
+        }
+        print(min)
+      }
+      if (numList.min > 0)
+      {
+        print(numList.min)
+      }
+    }
+    var testNums:List[Int] = List(-2,-3,-1,0,1,2,5,6)
+    smallestMissingInteger(testNums)
 
   }
 }
-
 

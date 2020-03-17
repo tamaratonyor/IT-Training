@@ -27,5 +27,8 @@ def smallestMissingInteger(numList):
             value += 1
     return value
 
+    if min(numList) > 0:
+        return min(numList)
+
 
 print(smallestMissingInteger([-1,-2,0,3,5]))

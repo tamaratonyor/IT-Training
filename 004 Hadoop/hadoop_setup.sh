@@ -62,4 +62,7 @@ echo "<configuration>
 hdfs namenode -format
 cd $HADOOP_HOME/sbin/
 ./start-all.sh
+hdfs dfs -mkdir /tammy
+hdfs dfs -mkdir /tammy/hadoop
+hdfs dfs -put /Downloads/Shakespeare.txt /tammy/hadoop
 
