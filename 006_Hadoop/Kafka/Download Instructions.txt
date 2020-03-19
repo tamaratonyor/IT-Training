@@ -1,0 +1,10 @@
+Go to https://kafka.apache.org/downloads
+Download version 2.3.1. source download
+
+Open terminal
+cd opt
+mkdir /home/tammy/opt/kafka
+tar -zxvf <Download directory>
+cd
+sudo gedit .bash_profile.sh
+echo "export KAFKA_HOME=/home/tammy/opt/kafka" >> .bash_profile.sh

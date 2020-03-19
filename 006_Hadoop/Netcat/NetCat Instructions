@@ -1,0 +1,12 @@
+Netcat
+------
+
+Using the following format to communicate between local machine and VM
+
+nc <IP Address> <Port>
+nc -l<Port>
+
+Using the following format to communicate between 2 VMs
+
+nc  localhost<Port>
+nc -l<Port>
