@@ -1,0 +1,21 @@
+# 25 10-13 * * * python /home/fieldemployee/Desktop/Word_Counter_Python.py
+
+The above runs a command on the 26th minute between 10AM and 1PM on any day of the month (1-31), any month of the year (1-12), on any day of the week (0-6).
+
+IMAGE BELOW FOR REFERENCE
+
+
+*     *     *      *      *
+M     H     D      M      D
+i     o     a      o      a
+n     u     y      n      y
+u     r            t      
+t           o      h      o
+e           f             f
+                           
+            M             W
+            o             e
+            n             e
+            t             k
+            h
+
