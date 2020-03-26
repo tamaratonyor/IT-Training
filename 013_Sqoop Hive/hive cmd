@@ -1,0 +1,8 @@
+## Importing to hive database directory to the internal table hive table named hive_table from mysql table hdfs_export
+ 
+sqoop import --connect jdbc:mysql://localhost/bigData --username tammy --password 'password' --table hdfs_export --target-dir /user/hive/warehouse/bigdata.db/hive_table -m 1
+
+
+##Exporting from engineers internal hive table created to an employee table created in mysql
+sqoop export --connect jdbc:mysql://localhost/bigData --username tammy --password 'password' --table employee --export-dir /user/hive/warehouse/engineers --input-fields-terminated-by '\001' -m 1
+

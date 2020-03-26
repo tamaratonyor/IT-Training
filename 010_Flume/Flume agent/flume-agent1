@@ -1,0 +1,39 @@
+agent1.sources = netcat
+
+agent1.channels = mem
+
+agent1.sinks = hadoop
+
+# For each one of the sources, the type is defined
+
+agent1.sources.netcat.type = netcat
+
+agent1.sources.netcat.bind = localhost
+
+agent1.sources.netcat.port = 44444
+
+# The channel can be defined as follows.
+
+agent1.channels.mem.type = memory
+
+agent1.channels.mem.capacity = 1000
+
+agent1.channels.mem.transactionCapacity = 100
+
+# Each sink's type must be defined
+
+agent1.sinks.hadoop.type = hdfs
+
+agent1.sinks.hadoop.hdfs.path = hdfs://localhost:9000/flumetask
+
+agent1.sinks.hadoop.hdfs.roll.Interval = 10
+
+agent1.sinks.hadoop.hdfs.writeFormat = Text
+
+agent1.sinks.hadoop.hdfs.fileType = DataStream
+
+# Bind the source and sink to the channel
+
+agent1.sources.netcat.channels = mem
+
+agent1.sinks.hadoop.channel = mem

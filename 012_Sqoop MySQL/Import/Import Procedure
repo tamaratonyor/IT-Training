@@ -1,0 +1,18 @@
+## Start MYSQL
+sudo mysql
+
+## Create database bigData
+CREATE DATABASE bigData;
+
+## Use bigData database
+USE bigData;
+
+## Create Table engineers
+CREATE TABLE engineers(id varchar(255), name varchar(255));
+
+## Insert Values, however many
+
+INSERT INTO engineers(id, name) values("1","Tammy");
+
+##Import to a sqoop-import directory from a bigData database table named engineers
+sqoop import --connect jdbc:mysql://localhost/bigData --username tammy --password 'password' --table engineers --target-dir hdfs://localhost:9000/sqoop-import

@@ -1,0 +1,21 @@
+## Start MYSQL
+sudo mysql
+
+## Create database bigData
+CREATE DATABASE bigData;
+
+## Use bigData database
+USE bigData;
+
+## Create Table hdfs_export
+CREATE TABLE engineers(id varchar(255), item_number varchar(255), rating varchar(255), views varchar(255));
+
+## If in the same terminal, exit mysql, else just open a new terminal
+## Make a hdfs directory
+hdfs dfs -mkdir /sqoop-export
+
+## Put the downloaded u.data file into sqoop-export directory
+hdfs dfs -put ~/Downloads/u.data /sqoop-export 
+
+## Export from the u.data file stored in my sqoop-export directory to the sql table called hdfs_export
+sqoop export --connect jdbc:mysql://localhost/bigData --username tammy --password 'password' --table hdfs_export --fields-terminated-by '\t' --lines-terminated-by '\n' --export-dir hdfs://localhost:9000/sqoop-export

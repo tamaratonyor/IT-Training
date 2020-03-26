@@ -1,0 +1,3 @@
+##Provided flume-agent1 exists in the same directory this command is run in the command is as follows
+
+flume-ng agent --name agent1 --conf-file flume-agent1
