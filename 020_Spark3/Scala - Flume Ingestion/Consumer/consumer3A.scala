@@ -20,13 +20,10 @@ object Consumer3A
 
  def main(args: Array[String]): Unit =
 	{	
-		var line_list: ListBuffer[String] = ListBuffer[String]()
 		val lines = flumeStream.map{e => new String(e.event.getBody().array(), "UTF-8")}
 		lines.foreachRDD{ rdd =>
   				rdd.foreach { record =>
-    				line_list += record
     				print(record)
-				
   					     }
 				val row = rdd.map(p => Row(p(0), p(1)))
 				val df = sqlContext.createDataFrame(row, schema)
