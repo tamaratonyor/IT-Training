@@ -1,0 +1,46 @@
+agent.sources = Twitter
+
+agent.channels = mem
+
+agent.sinks = spark
+
+
+# For each one of the sources, the type is defined
+
+agent.sources.Twitter.type = org.apache.flume.source.twitter.TwitterSource
+
+agent.sources.Twitter.consumerKey = uX0TWqkx0okYEjjqLzxIx6mD6
+
+agent.sources.Twitter.consumerSecret = rzHIs3TMJnADbZNvdGU7LQUo0kPxPISq3RGSLfqcBip39X5END
+
+agent.sources.Twitter.accessToken = 559516596-yDA9xqOljo4CV32wSnqsx2BXh4RBIRKFxZGSZrPC
+
+agent.sources.Twitter.accessTokenSecret = zDxePILZitS5tIWBhre0GWqps0FIj9OadX8RZb6w8ZCwz
+
+agent.sources.Twitter.keywords = COVID19, Coronavirus
+
+
+# The channel can be defined as follows.
+
+agent.channels.mem.type = memory
+
+agent.channels.mem.capacity = 10000
+
+agent.channels.mem.transactionCapacity = 1000
+
+
+
+# Each sink's type must be defined
+
+agent.sinks.spark.type = org.apache.spark.streaming.flume.sink.SparkSink
+
+agent.sinks.spark.hostname = localhost
+
+agent.sinks.spark.port = 4333
+
+
+#Bind source and sink to channel
+
+agent.sources.Twitter.channels = mem
+
+agent.sinks.spark.channel = mem

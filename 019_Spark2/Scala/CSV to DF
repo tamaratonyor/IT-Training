@@ -1,0 +1,17 @@
+import scala.io.Source
+import scala.collections.ListBuffer
+
+var listbuff5: ListBuffer[(String,String,String,String,String,String)] = ListBuffer[(String,String,String,String,String,String)]()
+val myFile:Source = Source.fromFile("/home/tammy/Downloads/MOCK_DATA.csv")
+
+for (i <- 1 until line_list.length)
+    { 
+	var lineArr = line_list(i).split(",")
+        listbuff5+=((lineArr(0),lineArr(1),lineArr(2),lineArr(3),lineArr(4),lineArr(5)))
+    }
+
+
+val rddbuff5 = sc.parallelize(listbuff5)
+val df5 = rddbuff5.toDF("id","name","email","phone","city","department_name")
+df5.collect()
+df5.show
