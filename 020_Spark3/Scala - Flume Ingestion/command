@@ -1,0 +1,2 @@
+
+spark-submit --packages org.apache.spark:spark-streaming-flume_2.11:2.4.5 /home/tammy/Project1/target/scala-2.11/project1_2.11-0.1.0-SNAPSHOT.jar
