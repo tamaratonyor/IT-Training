@@ -26,6 +26,9 @@ directKafkaStream = KafkaUtils.createDirectStream(ssc, ["sparky"], {"metadata.br
 sleep(3)
 lines = directKafkaStream.map(lambda x: x[1])
 line_list = []
+families = {
+    'cf': dict(),
+}
 
 
 def makeIterable(rdd):
@@ -38,6 +41,14 @@ def makeIterable(rdd):
 		flattened_list = [flatten(dic)]
 		df = pd.DataFrame(flattened_list)
 		print(df)
+                connection = happybase.Connection('127.0.0.1',9090, timeout=None, autoconnect=False, compat='0.98', transport='buffered')
+                connection.open()
+                connection.create_table('sample_table', families)
+                table = connection.table('sample_table')
+                myarg = {b'cf:message': str(df.iloc[0]['error_message']), b'cf:error': str(df.iloc[0]['error_status'])}
+                table.put('123', myarg)
+                connection.close()
+
 
 
 lines.foreachRDD(makeIterable)
