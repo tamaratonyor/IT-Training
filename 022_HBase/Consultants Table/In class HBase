@@ -1,0 +1,17 @@
+Copy consultants.csv file to maria_dev:
+scp – P 2222 ~/consultants.csv  maria_dev@localhost:/home/maria_dev 
+
+SSH into maria_dev:
+ssh maria_dev@localhost -p2222
+
+In maria_dev copy consultants.csv to hadoop:
+hadoop dfs -copyFromLocal consultant.csv /tmp
+
+In maria_dev hbase create an empty consultants table:
+create 'consultants',{NAME => 'column_family1'}
+
+In maria_dev;
+hbase org.apache.hadoop.hbase.mapreduce.ImportTsv -Dimporttsv.separator=','  -Dimporttsv.columns='HBASE_ROW_KEY,column_family1:id,column_family1:name,column_family1:email,column_family1:phone,column_family1:city,column_family1:department_name' consultants /tmp/consultant.csv
+
+If there is a memory issue enter the following before opening HBase
+sudo -u hbase HBASE_HEAPSIZE=10G hbase hbck -fix

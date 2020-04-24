@@ -1,0 +1,28 @@
+Company: NY TIMES
+
+
+Project Business Case: ARTICLE POPULARITY OPTIMIZATION 
+
+
+Purpose of the pipeline: To prioritize article popularity and discover the commonalities in popular NY Times articles, thereby increasing our subscriber count.
+
+
+Benefits of the pipeline: It provides a single point for the user to discover the article types, news types, and word counts of all of the NY times articles. Allowing them to be queried as needed to discover useful information.
+
+
+DATA Source: NY Times Article search API
+
+
+Tool: KAFKA, SPARK, MYSQL
+
+
+Why Tool:
+
+I chose kafka because it is capable of handling high-velocity and high-volume data and data will be streaming quickly and at a high volume. Kafka also has low latency which serves me well in this project.  
+
+I chose Spark because I wanted a processing tool that can do batch processing and Realtime processing rapidly.
+
+I chose MYSQL because of its user friendly query language and its interconnectivity with spark dataframes.
+
+
+Environment: HDP/VM

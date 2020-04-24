@@ -22,7 +22,7 @@ print("PROGRAM STARTING!!!!!!!!!")
 print("PROGRAM STARTING!!!!!!!!!")
 print("PROGRAM STARTING!!!!!!!!!")
 sqlContext = sql.SQLContext(sc)
-directKafkaStream = KafkaUtils.createDirectStream(ssc, ["sparky"], {"metadata.broker.list": "localhost:9091"})
+directKafkaStream = KafkaUtils.createDirectStream(ssc, ["sparky"], {"metadata.broker.list": "sandbox-hdp.hortonworks.com:6667"})
 sleep(3)
 lines = directKafkaStream.map(lambda x: x[1])
 line_list = []

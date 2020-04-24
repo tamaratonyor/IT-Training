@@ -1,0 +1,8 @@
+Weekly hits playlist
+--------------------
+* Business case: Find the most popular or most played songs released past a certain date. (i.e. every week or month). This could reveal trends in music. If pop music is more popular this week or R&B or Holiday music. Combining this information with other factor can reveal what music we listen to when and allow potential artist know the optimal time to release their respective genres of music.
+* Ingestion via kafka
+* Processing via Spark
+* Storage in Hive
+ 
+
