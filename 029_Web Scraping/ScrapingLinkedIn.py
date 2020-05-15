@@ -23,6 +23,11 @@ x = requests.get(url)
 soup = BeautifulSoup(x.text, "html.parser")
 linklist = []
 datelist = []
+
+count = 1
+readdf = pd.read_sql_table('LinkedIn', database_connection)
+URLList = readdf['URL'].to_list()
+
 	
 for a in soup.find_all('a', href=True):
 	if "linkedin.com/company/" in a['href']:	
@@ -37,9 +42,12 @@ companylist = [element.text for element in soup.find_all("a","result-card__subti
 locationlist = [element.text for element in soup.find_all("span","job-result-card__location")]
 
 for x in range(len(titlelist)):
-	df = pd.DataFrame({'Date': datelist[x],'Job_Title': titlelist[x].replace("\n",""), 'URL': linklist[x],'Organization': companylist[x].replace("\n",""), 'Location' : locationlist[x]},index=[x+1])
-	sdf = sqlContext.createDataFrame(df)
-	sdf.show()
-	df.to_sql(con=database_connection, name='LinkedIn', if_exists='append')
+	df = pd.DataFrame({'Date': datelist[x],'Job_Title': titlelist[x].replace("\n",""), 'URL': linklist[x],'Organization': companylist[x].replace("\n","")},index=[count])
+	if linklist[x] not in URLList:
+		sdf = sqlContext.createDataFrame(df)
+		sdf.show()
+		df.to_sql(con=database_connection, name='LinkedIn', if_exists='append')
+		count +=1
+		URLList.append(linklist[x])
 
 print("Search Complete.")

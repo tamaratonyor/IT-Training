@@ -20,6 +20,11 @@ searchval = raw_input("Enter job to search:")
 searchval = searchval.replace(" ","%20")
 
 pagenums = int(raw_input("Enter number of webpages to scan (digits only):"))
+dfcache = []
+count = 1
+
+readdf = pd.read_sql_table('Indeed', database_connection)
+tabledescriptions = readdf['Job_Work_Task'].to_list()
 
 for f in range(pagenums):
 	url = 'https://www.indeed.com/jobs?q={0}&start={1}'.format(searchval,f*10)
@@ -37,10 +42,12 @@ for f in range(pagenums):
 	descriptionlist = [element.text for element in soup.find_all("div","summary")]
 
 	for x in range(len(titlelist)):
-		df = pd.DataFrame({'Date': datelist[x],'Job_Title': titlelist[x].replace("\n",""),'Job_Description' : descriptionlist[x].encode('utf-8'),'URL': linklist[x],'Organization': companylist[x].replace("\n","")},index=[(f*19)+x+1])
-		sdf = sqlContext.createDataFrame(df)
-		sdf.show()
-		df.to_sql(con=database_connection, name='Indeed', if_exists='append')
+		df = pd.DataFrame({'Date': datelist[x],'Job_Title': titlelist[x].replace("\n",""),'Job_Work_Task' : descriptionlist[x].encode('utf-8'),'URL': linklist[x],'Organization': companylist[x].replace("\n","")},index=[count])
+		if descriptionlist[x].encode('utf-8') not in tabledescriptions:
+			sdf = sqlContext.createDataFrame(df)
+			sdf.show()
+			df.to_sql(con=database_connection, name='Indeed', if_exists='append')
+			count+=1
 
  
 print("Search Complete.")
