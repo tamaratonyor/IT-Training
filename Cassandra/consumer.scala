@@ -43,7 +43,7 @@ object consumer
 			     // Create DF2 using createDataframe, this DF is writtern to MYSQL
 			     if (df1 !=null && df2 != null)
 			     {
-				df1.write.format("org.apache.spark.sql.cassandra").options(Map("table"->"product","keyspace" -> "capstone")).mode(SaveMode.Append).save()
+				df1.write.format("org.apache.spark.sql.cassandra").options(Map("table"->"Articles","keyspace" -> "Capstone")).mode(SaveMode.Append).save()
 			     }
 			   }
 			println("RDD END IN STREAM!!!")
