@@ -4,3 +4,4 @@
  •         SSH https://www.hostinger.com/tutorials/ssh-tutorial-how-does-ssh-work
  •         Learn Scala : https://www.tutorialspoint.com/Scala/index.htm
  •         Learn Java : Optional https://www.tutorialspoint.com/java/index.htm
+ Add stuff
